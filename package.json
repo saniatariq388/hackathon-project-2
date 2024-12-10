@@ -9,18 +9,37 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@headlessui/react": "^2.2.0",
+    "@mui/material": "^6.1.10",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "font": "^0.0.4",
+    "lucide": "^0.468.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.2"
+    "react-fontawesome": "^1.7.1",
+    "react-icons": "^5.4.0",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.2"
+    "typescript": "^5"
   }
 }
