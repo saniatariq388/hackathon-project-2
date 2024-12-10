@@ -59,11 +59,11 @@ function Testimonials() {
 
         {/* Quote mark */}
         <div className="text-center mt-16 mb-8">
-          <span className="text-6xl text-[#FF9F0D] font-serif">"</span>
+          <span className="text-6xl text-[#FF9F0D] font-serif"></span>
         </div>
 
         {/* Content */}
-        <blockquote className="text-center text-lg text-gray-600 mb-8">
+        <blockquote className='text-center text-lg text-gray-600 mb-8'>
           {testimonials[activeIndex].content}
         </blockquote>
 

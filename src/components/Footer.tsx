@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image"
+import Image from 'next/image'
 
 
 export default function Footer() {
@@ -16,7 +16,7 @@ export default function Footer() {
                   Support ?
                 </h3>
                 <p className="m-0 font-inter text-[16px] font-normal">
-                  Don't wait make a smart & logical quote here. Its pretty easy.
+                  Don not wait make a smart & logical quote here. Its pretty easy.
                 </p>
               </div>
   
@@ -58,7 +58,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex flex-col gap-[20px] text-white p-4 rounded">
-                <h3 style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} className="font-bold text-[24px]">
+                <h3 className="font-bold text-[24px]">
                   Useful Links
                 </h3>
                 <ul className="flex flex-col gap-[20px] font-inter text-[20px] font-normal">
@@ -108,9 +108,9 @@ export default function Footer() {
                 </h3>
   
                 <div className="flex flex-col gap-[20px]">
-                  <Link href="" className="flex gap-[20px]">
+                  <Link href="!" className="flex gap-[20px]">
                     <div className="w-[55px] h-[55px]">
-                      <img
+                      <Image
                         src="/images/kabab2.png"
                         className="w-[100%] h-[100%]"
                         alt=""
@@ -121,9 +121,9 @@ export default function Footer() {
                       <p className="text-[18px]">Keep Your Business</p>
                     </div>
                   </Link>
-                  <Link href="" className="flex gap-[20px]">
+                  <Link href="!" className="flex gap-[20px]">
                     <div className="w-[55px] h-[55px]">
-                      <img
+                      <Image
                         src="/images/roast.png"
                         className="w-[100%] h-[100%]"
                         alt=""
@@ -134,9 +134,9 @@ export default function Footer() {
                       <p className="text-[18px]">Keep Your Business</p>
                     </div>
                   </Link>
-                  <Link href="" className="flex gap-[20px]">
+                  <Link href="!" className="flex gap-[20px]">
                     <div className="w-[55px] h-[55px]">
-                      <img
+                      <Image
                         src="/images/roll.png"
                         className="w-[100%] h-[100%]"
                         alt=""

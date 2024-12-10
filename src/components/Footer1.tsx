@@ -71,42 +71,42 @@ export default function Footer() {
             <div className="grid grid-cols-3 gap-2">
              
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic1.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic2.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic3.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic4.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic5.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
-                  <img
+                  <Image
                     src={`/images/pic6.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"

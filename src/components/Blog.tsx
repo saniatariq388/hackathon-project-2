@@ -1,5 +1,6 @@
 import { ArrowRight, Calendar, MessageSquare } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
+import Image from 'next/image'
 
 export default function BlogSection() {
   const posts = [
@@ -42,7 +43,7 @@ export default function BlogSection() {
           <Card key={post.id} className="overflow-hidden">
             <CardContent className="p-0">
               <div className="aspect-[4/3] relative">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
                   className="object-cover w-full h-full"

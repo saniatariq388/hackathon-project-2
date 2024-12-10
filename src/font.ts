@@ -10,8 +10,8 @@ export const greatVibesFont = Great_Vibes({
 // You can customize the weight and style as needed
 const inter = Inter({
     subsets: ['latin'],
-    weights: ['400', '500', '700'], // Regular, Medium, Bold
-    styles: ['normal', 'italic'],   // Normal and Italic variants
+    weight: ['400', '500', '700'], // Regular, Medium, Bold
+    style: ['normal', 'italic'],   // Normal and Italic variants
     display: 'swap',                // Font-display property
   });
   

@@ -2,6 +2,7 @@ import { greatVibesFont } from '@/font'
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { DotIcon as ChatDots, Link, Share2, ThumbsUp } from 'lucide-react'
+import Image from 'next/image'
 
 function Blogs() {
   return (
@@ -13,7 +14,7 @@ function Blogs() {
          <div className='w-[1320px] flex gap-[24px] mt-[50px] mb-[123px]'>
          <Card className="w-[424px] border border-white bg-black text-white">
       <div className="aspect-[1.63/1]">
-        <img
+        <Image
           src="/images/burgerr.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"
@@ -45,7 +46,7 @@ function Blogs() {
 
          <Card className="w-[424px] border border-white bg-black text-white">
       <div className="aspect-[1.63/1]">
-        <img
+        <Image
           src="/images/pizza.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"
@@ -77,7 +78,7 @@ function Blogs() {
     </Card>
          <Card className="w-[424px] border border-white bg-black text-white">
       <div className="aspect-[1.63/1]">
-        <img
+        <Image
           src="/images/shawarma.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"

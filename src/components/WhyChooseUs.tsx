@@ -10,14 +10,14 @@ export default function WhyChooseUs() {
           {/* Left side - Image Grid */}
           <div className="relative w-[559px] grid grid-cols-3 gap-4">
             <div className="col-span-2">
-              <img
+              <Image
                 src="/images/shawarma.png?height=346&width=352"
                 alt="Delicious tacos with vegetables"
                 className="object-cover rounded-lg"
               />
             </div>
             <div className="mt-[185px] mr-4">
-              <img
+              <Image
                 src="/images/burger.png?height=231&width=261"
                 alt="Gourmet burger"
                 className="object-cover rounded-lg"
@@ -25,23 +25,23 @@ export default function WhyChooseUs() {
             </div>
 
               <div className="w-[559px] grid grid-cols-3 gap-4">
-              <img
+              <Image
                 src="/images/kabab2.png?height=306&width=244"
                 alt="Fried food with dip"
                 className="object-cover rounded-lg"
               />
-              <img
+              <Image
                 src="/images/burger4.png?height=226&width=221"
                 alt="Cheese burger"
                 className="object-cover rounded-lg"
               />
                 <div className='space-y-4'>
-                <img
+                <Image
                   src="/images/burger3.png?height=168&width=171"
                   alt="Plated burger"
                   className="object-cover rounded-lg"
                 />
-                <img
+                <Image
                   src="/images/salad1.png?height=166&width=161"
                   alt="Fresh salad"
                   className="object-cover rounded-lg"

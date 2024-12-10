@@ -49,7 +49,7 @@ export default function PartnersSection() {
               key={index}
               className="w-full max-w-[200px] grayscale hover:grayscale-0 transition-all duration-300"
             >
-              <img
+              <Image
                 src={partner.logo}
                 alt={`${partner.name} logo`}
                 className="w-full h-auto object-contain"
