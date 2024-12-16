@@ -30,9 +30,9 @@ function Foods() {
                    
                 </div>
             </div>
-          {/* <div className='w-[660px]  grid grid-cols-2 gap-4'>
+          <div className='w-[660px]  grid grid-cols-2 mt-8'>
             <Image src="/images/shawarma.png" alt="shawarma" width={370} height={370}></Image>
-          </div> */}
+          </div> 
         </div>
        
       </div>

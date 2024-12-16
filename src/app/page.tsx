@@ -21,7 +21,7 @@ export default function Home() {
     <OurMenu/>
     <Testimonials/>
     <Blogs/>
-    <Footer/>
+    <Footer bgColorLastDiv="#ff9f0d" textColor="white"/>
   </div>
   );
 }

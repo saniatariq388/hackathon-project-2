@@ -29,7 +29,7 @@ function AboutUs() {
              Read More
             </Button>
             </div>
-            <div className='w-[660px] grid grid-cols-2'>
+            <div className='w-[660px] grid grid-cols-2 gap-4'>
               <div className='w-[660px] h-[330px] col-span-2'>
                 <Image src="/images/eggs.png" alt="eggs image" width={660} height={330}></Image>
               </div>

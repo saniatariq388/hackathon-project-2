@@ -53,6 +53,7 @@ function Testimonials() {
               alt={testimonials[activeIndex].name}
               fill
               className="object-cover"
+             
             />
           </div>
         </div>
@@ -116,6 +117,7 @@ function Testimonials() {
         alt="flower"
         fill
         className="object-contain object-bottom"
+       
       />
     </div>
   </div>        

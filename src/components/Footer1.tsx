@@ -75,6 +75,8 @@ export default function Footer() {
                     src={`/images/pic1.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
@@ -82,6 +84,8 @@ export default function Footer() {
                     src={`/images/pic2.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
@@ -89,6 +93,8 @@ export default function Footer() {
                     src={`/images/pic3.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
@@ -96,6 +102,8 @@ export default function Footer() {
                     src={`/images/pic4.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
@@ -103,6 +111,8 @@ export default function Footer() {
                     src={`/images/pic5.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-md">
@@ -110,6 +120,8 @@ export default function Footer() {
                     src={`/images/pic6.png?height=108&width=109`}
                     alt={`Gallery image`}
                     className="h-full w-full object-cover"
+                    width={110}
+                    height={110}
                   />
                 </div>
             

@@ -14,27 +14,30 @@ export default function WhyChooseUs() {
               <Image
                 src="/images/why1.png?height=550&width=450"
                 alt="Food image 1"
-                layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                width={450}
+                height={560}
               />
             </div>
             <div className="absolute z-100 opacity-60 left-[330px] -top-[70px] w-64 h-64 rotate-12">
               <Image
                 src="/images/why3.png?height=260&width=220"
                 alt="Food image 2"
-                layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                width={65}
+                height={65}
               />
             </div>
             <div className="relative z-1 top-20 -left-16 w-[385px] h-[516px]">
               <Image
                 src="/images/why2.png?height=525&width=400"
                 alt="Food image 1"
-                layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                width={380}
+                height={520}
               />
             </div>
           </div>

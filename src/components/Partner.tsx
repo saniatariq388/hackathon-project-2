@@ -53,6 +53,8 @@ export default function PartnersSection() {
                 src={partner.logo}
                 alt={`${partner.name} logo`}
                 className="w-full h-auto object-contain"
+                width={200}
+                height={100}
               />
             </div>
           ))}

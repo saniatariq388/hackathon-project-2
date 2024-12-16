@@ -2,12 +2,19 @@ import React from "react";
 import Link from "next/link";
 import Image from 'next/image'
 
+interface FooterProps {
+  bgColorFirstDiv?: string;  // Optional prop for first div background color
+  bgColorLastDiv?: string; 
+  textColor?: string;
+}
 
-export default function Footer() {
+
+{}
+export default function Footer({ bgColorFirstDiv = 'black', bgColorLastDiv = '#4F4F4F', textColor = 'white' }: FooterProps) {
     return (
      <div>
       <div>
-        <div className='bg-[#e5ebe3] text-[#FFF]'>
+        <div className={`bg-[${bgColorFirstDiv}] text-[#FFF]`}>
           <div className="max-w-[1320px] mx-auto ">
             <div className="max-w-[1170px] mx-auto flex justify-between items-center py-[50px] border-b-[1px] border-b-[#FF9F0D]">
               <div className="flex flex-col">
@@ -113,7 +120,9 @@ export default function Footer() {
                       <Image
                         src="/images/kabab2.png"
                         className="w-[100%] h-[100%]"
-                        alt=""
+                        alt="image"
+                        width={60}
+                        height={60}
                       />
                     </div>
                     <div className="font-inter font-normal">
@@ -126,7 +135,9 @@ export default function Footer() {
                       <Image
                         src="/images/roast.png"
                         className="w-[100%] h-[100%]"
-                        alt=""
+                        alt="image"
+                        width={60}
+                        height={60}
                       />
                     </div>
                     <div className="font-inter font-normal">
@@ -139,7 +150,9 @@ export default function Footer() {
                       <Image
                         src="/images/roll.png"
                         className="w-[100%] h-[100%]"
-                        alt=""
+                        alt="image"
+                        width={60}
+                        height={60}
                       />
                     </div>
                     <div className="font-inter font-normal">
@@ -152,7 +165,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className='bg-[#FF9F0D] text-white font-inter'>
+        <div className={`bg-[${bgColorLastDiv}] text-${textColor}`}>
           <div className="max-w-[1320px] h-[100px] mx-auto flex justify-between items-center">
             <p className="m-0 font-normal text-[16px]">
               Copyright © 2022 by Ayeman. All Rights Reserved.

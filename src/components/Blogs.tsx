@@ -13,11 +13,13 @@ function Blogs() {
 
          <div className='w-[1320px] flex gap-[24px] mt-[50px] mb-[123px]'>
          <Card className="w-[424px] border border-white bg-black text-white">
-      <div className="aspect-[1.63/1]">
+      <div className="aspect-[1.63/1] ">
         <Image
           src="/images/burgerr.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"
+          width={450}
+          height={400}
         />
       </div>
       <CardContent className="flex flex-col gap-4 p-6">
@@ -50,6 +52,8 @@ function Blogs() {
           src="/images/pizza.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"
+          width={450}
+          height={360}
         />
       </div>
       <CardContent className="flex flex-col gap-4 p-6">
@@ -82,6 +86,8 @@ function Blogs() {
           src="/images/shawarma.png?height=350&width=424"
           alt="Food blog post"
           className="h-full w-full object-cover"
+          width={450}
+          height={360}
         />
       </div>
       <CardContent className="flex flex-col gap-4 p-6">

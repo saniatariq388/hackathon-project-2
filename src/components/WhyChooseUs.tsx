@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full mt-[130px] py-24 bg-gray-900">
+    <section className="w-full mt-[130px] py-24 ">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left side - Image Grid */}
@@ -14,6 +14,8 @@ export default function WhyChooseUs() {
                 src="/images/shawarma.png?height=346&width=352"
                 alt="Delicious tacos with vegetables"
                 className="object-cover rounded-lg"
+                width={360}
+                height={350}
               />
             </div>
             <div className="mt-[185px] mr-4">
@@ -21,6 +23,8 @@ export default function WhyChooseUs() {
                 src="/images/burger.png?height=231&width=261"
                 alt="Gourmet burger"
                 className="object-cover rounded-lg"
+                width={265}
+                height={235}
               />
             </div>
 
@@ -29,22 +33,30 @@ export default function WhyChooseUs() {
                 src="/images/kabab2.png?height=306&width=244"
                 alt="Fried food with dip"
                 className="object-cover rounded-lg"
+                width={250}
+                height={300}
               />
               <Image
                 src="/images/burger4.png?height=226&width=221"
                 alt="Cheese burger"
                 className="object-cover rounded-lg"
+                width={225}
+                height={230}
               />
                 <div className='space-y-4'>
                 <Image
                   src="/images/burger3.png?height=168&width=171"
                   alt="Plated burger"
                   className="object-cover rounded-lg"
+                  width={180}
+                  height={170}
                 />
                 <Image
                   src="/images/salad1.png?height=166&width=161"
                   alt="Fresh salad"
                   className="object-cover rounded-lg"
+                  width={180}
+                  height={170}
                 /></div>
              
             </div>

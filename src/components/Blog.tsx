@@ -47,6 +47,8 @@ export default function BlogSection() {
                   src={post.image}
                   alt={post.title}
                   className="object-cover w-full h-full"
+                  width={70}
+                  height={70}
                 />
               </div>
               <div className="p-6">
