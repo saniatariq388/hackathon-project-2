@@ -12,7 +12,7 @@ export default function Home() {
    <HeaderMenu />
    <StartardMenu/>
    <Partner />
-   <Footer bgColorLastDiv="#4F4F4F" bgColorFirstDiv="black" textColor="white"/>
+   <Footer bgColorFirstDiv="black" textColor="white"/>
    </div>
     </>
   )

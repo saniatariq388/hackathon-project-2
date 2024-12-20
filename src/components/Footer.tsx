@@ -10,11 +10,11 @@ interface FooterProps {
 
 
 {}
-export default function Footer({ bgColorFirstDiv = 'black', bgColorLastDiv = '#4F4F4F', textColor = 'white' }: FooterProps) {
+export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
     return (
      <div>
       <div>
-        <div className={`bg-[${bgColorFirstDiv}] text-[#FFF]`}>
+        <div className={`bg-${bgColorFirstDiv} text-[#FFF]`}>
           <div className="max-w-[1320px] mx-auto ">
             <div className="max-w-[1170px] mx-auto flex justify-between items-center py-[50px] border-b-[1px] border-b-[#FF9F0D]">
               <div className="flex flex-col">
@@ -82,7 +82,7 @@ export default function Footer({ bgColorFirstDiv = 'black', bgColorLastDiv = '#4
                     <Link href="#">Menu</Link>
                   </li>
                   <li>
-                    <Link href="#">Contacts</Link>
+                    <Link href="/signup">Contacts</Link>
                   </li>
                 </ul>
               </div>
@@ -90,7 +90,7 @@ export default function Footer({ bgColorFirstDiv = 'black', bgColorLastDiv = '#4
                 <h3 style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} className="font-bold text-[24px]">Help ?</h3>
                 <ul className="flex flex-col gap-[20px] font-inter text-[20px] font-normal">
                   <li>
-                    <Link href="#">FAQ</Link>
+                    <Link href="/faq">FAQ</Link>
                   </li>
                   <li>
                     <Link href="#">Term & conditions</Link>
@@ -165,7 +165,7 @@ export default function Footer({ bgColorFirstDiv = 'black', bgColorLastDiv = '#4
             </div>
           </div>
         </div>
-        <div className={`bg-[${bgColorLastDiv}] text-${textColor}`}>
+        <div className={`bg-"#4f4f4f" text-black`}>
           <div className="max-w-[1320px] h-[100px] mx-auto flex justify-between items-center">
             <p className="m-0 font-normal text-[16px]">
               Copyright © 2022 by Ayeman. All Rights Reserved.
