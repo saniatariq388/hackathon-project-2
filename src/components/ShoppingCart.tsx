@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from './ui/card'
 import { Separator } from '@radix-ui/react-select'
 import { Input } from './ui/input'
+import Link from 'next/link'
 
 
 interface Product {
@@ -78,84 +79,7 @@ export default function ProductList() {
 
   return (
    <>
-    <div className="w-full max-w-[1320px] mx-auto p-4">
-      <div className="grid grid-cols-12 gap-4 py-4 border-b text-gray-700 font-bold">
-        <div className="col-span-4 md:col-span-6">Product</div>
-        <div className="col-span-2 text-center">Price</div>
-        <div className="col-span-3 md:col-span-2 text-center">Quantity</div>
-        <div className="col-span-2 text-center">Total</div>
-        <div className="col-span-1 text-center">Remove</div>
-      </div>
-
-      {products.map((product) => (
-        <div key={product.id} className="grid grid-cols-12 gap-4 py-6 border-b items-center">
-          <div className="col-span-4 md:col-span-6 flex gap-4 items-center">
-            <div className="w-20 h-20 relative">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-bold text-gray-700">{product.name}</h3>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${
-                      i < product.rating ? 'fill-[#FF9F0D] stroke-[#FF9F0D]' : 'fill-gray-200 stroke-gray-200'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="col-span-2 text-center font-helvetica text-gray-700">
-            ${product.price.toFixed(2)}
-          </div>
-
-          <div className="col-span-3 md:col-span-2 flex justify-center">
-            <div className="flex items-center border rounded-full">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => updateQuantity(product.id, -1)}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="w-8 text-center">{product.quantity}</span>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => updateQuantity(product.id, 1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-
-          <div className="col-span-2 text-center font-bold text-gray-700">
-            ${(product.price * product.quantity).toFixed(2)}
-          </div>
-
-          <div className="col-span-1 flex justify-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-full hover:bg-red-50 hover:text-red-500"
-              onClick={() => removeProduct(product.id)}
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      ))}
-    </div>
+    
      <div className="container mx-auto px-4 py-8">
      <div className="grid gap-8 lg:grid-cols-2">
        {/* Coupon Code Section */}
@@ -207,12 +131,12 @@ export default function ProductList() {
              </div>
            </CardContent>
          </Card>
-         <Button 
+         <Link href={"/checkOut"}> <Button 
            className="w-full bg-[#FF9F0D] hover:bg-[#f59300] text-white h-16 text-lg"
          >
            Proceed to Checkout
            <ArrowRight className="ml-2 h-5 w-5" />
-         </Button>
+         </Button></Link>
        </div>
      </div>
    </div>

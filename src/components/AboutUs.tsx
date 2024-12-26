@@ -3,6 +3,7 @@ import { Check } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function AboutUs() {
   return (
@@ -25,9 +26,11 @@ function AboutUs() {
                <Check color="white"/>
                 <p>Lacus nisi, et ac dapibus sit eu velit in consequat elit.</p>
                 </div>
+                <Link href={"/about"}>
                 <Button className="bg-[#FF9F0D] w-[190px] h-[60px] text-white rounded-full px-8 py-6 hover:bg-[#FF9F0D]/90">
              Read More
             </Button>
+                </Link>
             </div>
             <div className='w-[660px] grid grid-cols-2 gap-4'>
               <div className='w-[660px] h-[330px] col-span-2'>

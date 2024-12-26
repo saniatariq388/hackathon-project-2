@@ -22,7 +22,9 @@ export default function Header() {
    <div>
      <div className='relative w-full h-[500px]'>
      <div className="absolute z-100 w-full h-[500px]">
-        <Image src="/images/back2.png" alt="back" layout="fill" objectFit="cover"></Image>
+
+          {/* yaha error h */}
+        <Image src="/images/back2.png" alt="back" layout="fill" objectFit="cover"></Image> 
       {/* Navigation Bar */}
       <nav className=" absolute top-0 left-0 w-full z-1 px-4 md:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -43,13 +45,12 @@ export default function Header() {
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
-                    href={`/${item.path}`}
+                    href={`/`}
                     className={`${
                       activePath === item.path
                         ? 'text-[#FF9F0D] font-bold'
                         : 'text-white hover:text-[#FF9F0D]'
-                    } text-base transition-colors duration-200`}
-                    onClick={() => setActivePath(item.path)}
+                    } text-base transition-colors duration-200 cursor-pointer`}
                   >
                     {item.name}
                   </Link>
@@ -83,7 +84,7 @@ export default function Header() {
               Home
             </Link>
             <span className="text-white">&gt;</span>
-            <span className="text-[#FF9F0D]">Menu</span>
+            <span className="text-[#FF9F0D]">menu</span>
           </div>
         </div>
       </div>

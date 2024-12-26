@@ -1,8 +1,8 @@
 
-import CheckOutTable from '@/components/CheckOutTable'
 import FoodList from '@/components/FoodList'
+import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
-import ShoppingCart from '@/components/ShoppingCart'
+
 import React from 'react'
 
 function page() {
@@ -10,9 +10,8 @@ function page() {
     <div>
         <div className='w-full'>
         <HeaderMenu /> 
-        <CheckOutTable/>
-        <ShoppingCart/>
         <FoodList/>
+        <Footer/>
         </div>
     </div>
   )

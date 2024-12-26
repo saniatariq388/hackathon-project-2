@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Card } from './ui/card'
 import { Coffee } from 'lucide-react';
 import FoodCategory from './FoodCategory';
+import Link from 'next/link';
 
 
 
@@ -12,7 +13,7 @@ function StartardMenu() {
         <div className='w-full flex flex-col gap-[120px] items-center'>
             <div className='w-[1320px] mt-[120px] flex justify-between gap-[112px]'>
                 <div className='w-[448px] h-[726px] mt-[84px]'>
-                    <Image src="/images/bowl.png" alt="image" width={450} height={730}></Image>
+                    <Link href={"/shop"}><Image src="/images/bowl.png" alt="image" width={450} height={730}></Image></Link>
                 </div>
                 <div className='w-[760px] h-[115px]'>
         <div className="grid gap-8 md:grid-rows-4">
@@ -124,7 +125,7 @@ function StartardMenu() {
         </div>
       </div> 
       <div className='w-[448px] h-[726px] mt-[84px]'>
-                    <Image src="/images/bowl.png" alt="image" width={450} height={730}></Image>
+                    <Link href={"/shop"}><Image src="/images/bowl.png" alt="image" width={450} height={730}></Image></Link>
                 </div>     
             </div>
         </div>
@@ -135,7 +136,7 @@ function StartardMenu() {
        <div className='w-full flex flex-col gap-[120px] items-center'>
             <div className='w-[1320px] mt-[120px] flex justify-between gap-[112px]'>
                 <div className='w-[448px] h-[726px] mt-[84px]'>
-                    <Image src="/images/cupcakes.png" alt="image" width={450} height={730}></Image>
+                   <Link href={"/shop"}> <Image src="/images/cupcakes.png" alt="image" width={450} height={730}></Image></Link>
                 </div>
                 <div className='w-[760px] h-[115px]'>
         <div className="grid gap-8 md:grid-rows-4">
@@ -247,7 +248,7 @@ function StartardMenu() {
         </div>
       </div> 
       <div className='w-[448px] h-[726px] mt-[84px]'>
-                    <Image src="/images/drinks.png" alt="image" width={450} height={730}></Image>
+                    <Link href={"/shop"}><Image src="/images/drinks.png" alt="image" width={450} height={730}></Image></Link>
                 </div>     
             </div>
         </div>

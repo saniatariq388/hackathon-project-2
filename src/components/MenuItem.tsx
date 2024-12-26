@@ -5,6 +5,7 @@ import { Leaf } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import Link from 'next/link'
 
 interface MenuItem {
   name: string
@@ -38,7 +39,7 @@ export default function FoodMenu() {
     </p>
   </div>
 
-  <Tabs defaultValue="breakfast" className="w-full">
+  <Tabs defaultValue="breakfast" className="w-full text-black">
     <TabsList className="mb-8 w-full justify-center gap-8 bg-transparent">
       {["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Snack"].map((meal) => (
         <TabsTrigger
@@ -71,9 +72,9 @@ export default function FoodMenu() {
   </Tabs>
 
   <div className="mt-12 flex justify-center">
-    <Button variant="outline" className="border-[#195A00] text-[#195A00] hover:bg-[#195A00] hover:text-white">
+   <Link href={"/menu"}> <Button variant="outline" className="border-[#195A00] text-[#195A00] hover:bg-[#195A00] hover:text-white">
       View menu
-    </Button>
+    </Button></Link>
   </div>
 </section>
 </div>

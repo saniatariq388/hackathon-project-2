@@ -70,19 +70,19 @@ export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
                 </h3>
                 <ul className="flex flex-col gap-[20px] font-inter text-[20px] font-normal">
                   <li>
-                    <Link href="#">About</Link>
+                    <Link href="/about">About</Link>
                   </li>
                   <li>
-                    <Link href="#">Partners</Link>
+                    <Link href="/ourChef">Partners</Link>
                   </li>
                   <li>
-                    <Link href="#">Team</Link>
+                    <Link href="/ourChef">Team</Link>
                   </li>
                   <li>
-                    <Link href="#">Menu</Link>
+                    <Link href="/menu">Menu</Link>
                   </li>
                   <li>
-                    <Link href="/signup">Contacts</Link>
+                    <Link href="/contact">Contacts</Link>
                   </li>
                 </ul>
               </div>

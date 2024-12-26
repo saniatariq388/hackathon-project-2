@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
 import ShopDetails from '@/components/ShopDetails'
 import React from 'react'
@@ -8,6 +9,7 @@ function page() {
       <div className='w-full '>
       <HeaderMenu /> 
       <ShopDetails/>
+      <Footer/>
         </div>  
     </>
   )

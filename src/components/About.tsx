@@ -1,5 +1,6 @@
 import { GraduationCap, Coffee, Users } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function WhyChooseUs() {
   return (
@@ -7,9 +8,9 @@ export default function WhyChooseUs() {
         {/* About Us Section */}
                   <div className="flex flex-wrap -mx-4 py-16">
                     <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-                      <div className="grid grid-cols-2 grid-rows-2 gap-2">
+                      <div className="grid grid-cols-2 grid-rows-2 gap-4 ml-8">
                         <div className='row-span-2 w-[350px] h-[550px]'>
-                        <Image src="/images/shawarma.png?height=560&width=350" alt="Tacos" width={350} height={550} className="rounded-lg" />
+                        <Image src="/images/shawarma.png?height=560&width=350" alt="Tacos" width={360} height={550} className="rounded-lg" />
                         </div>
                         <Image src="/images/kabab2.png?height=271&width=309" alt="Fried food" width={300} height={300} className="rounded-lg" />
                         <Image src="/images/why2.png?height=382&width=309" alt="Salad" width={312} height={400} className="rounded-lg" />
@@ -22,7 +23,9 @@ export default function WhyChooseUs() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis vitae mus risus.
                       </p>
                       <div className="flex space-x-4">
+                        <Link href={"/menu"}>
                         <button className="bg-green-700 w-[195px] h-[58px] text-white text-[18px] leading-[26px] px-12 py-4 rounded-md font-semibold">Show more</button>
+                        </Link>
                         <button className="flex items-center space-x-2 text-white">
                           <div className="bg-green-700 rounded-full p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

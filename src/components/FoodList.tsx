@@ -75,6 +75,7 @@ export default function ShopPage() {
           </Card>
 
           {/* Categories */}
+          <Link href={"/shopDetails"}>
           <Card>
             <CardContent className="p-4 text-black">
               <h3 className="font-bold text-xl mb-4">Category</h3>
@@ -90,6 +91,7 @@ export default function ShopPage() {
               </div>
             </CardContent>
           </Card>
+           </Link>
 
           {/* Price Filter */}
           <Card>
@@ -168,7 +170,7 @@ export default function ShopPage() {
           {ourFoodArray.map((product) => (
             <Card key={product.id} className="overflow-hidden">
               <div className="relative aspect-square">
-               <Link href={`/ShopDetails`}>
+               <Link href={`/shopDetails`}>
                <Image 
                   src={product.src}
                   alt={product.name}
@@ -197,8 +199,8 @@ export default function ShopPage() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-8 gap-2">
-        <Button variant="outline" size="icon">
+      <div className="flex justify-center mt-8 gap-2 text-black">
+        <Button variant="outline" size="icon" >
           «
         </Button>
         {[1, 2, 3].map((page) => (
