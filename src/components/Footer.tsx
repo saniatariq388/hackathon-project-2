@@ -9,26 +9,28 @@ interface FooterProps {
 }
 
 
-{}
-export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
-    return (
-     <div>
+
+
+
+
+export default function Footer({ bgColorFirstDiv = 'black' }: FooterProps) {
+  return (
+    <div>
       <div>
         <div className={`bg-${bgColorFirstDiv} text-[#FFF]`}>
-          <div className="max-w-[1320px] mx-auto ">
-            <div className="max-w-[1170px] mx-auto flex justify-between items-center py-[50px] border-b-[1px] border-b-[#FF9F0D]">
-              <div className="flex flex-col">
-                <h3 className="font-helvetica text-[32px] font-bold">
-                  <span className="text-[#FF9F0D]">St</span>ill You Need Our
-                  Support ?
+          <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Support Section */}
+            <div className="max-w-[1170px] mx-auto flex flex-col lg:flex-row justify-between items-center py-[50px] border-b-[1px] border-b-[#FF9F0D]">
+              <div className="text-center lg:text-left flex flex-col mb-6 lg:mb-0">
+                <h3 className="font-helvetica text-[24px] lg:text-[32px] font-bold">
+                  <span className="text-[#FF9F0D]">St</span>ill You Need Our Support?
                 </h3>
-                <p className="m-0 font-inter text-[16px] font-normal">
-                  Don not wait make a smart & logical quote here. Its pretty easy.
+                <p className="m-0 font-inter text-[14px] lg:text-[16px] font-normal">
+                  Don’t wait—make a smart & logical quote here. It’s pretty easy.
                 </p>
               </div>
-  
               <div>
-                <form action="" className="font-normal">
+                <form action="" className="font-normal flex flex-col sm:flex-row gap-2">
                   <input
                     className="p-3 rounded-tl-[4px] rounded-bl-[4px] bg-[#FF9F0D] font-inter text-white placeholder-[#FFF] placeholder-opacity-60"
                     type="text"
@@ -36,39 +38,37 @@ export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
                   />
                   <button
                     type="submit"
-                    className="bg-white p-3 rounded-[4px] text-[#FF9F0D]"
+                    className="bg-white p-3 rounded-[4px] text-[#FF9F0D] w-full sm:w-auto"
                   >
                     Subscribe Now
                   </button>
                 </form>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-4 p-4">
+            {/* Links Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+              {/* About Us */}
               <div className="flex flex-col gap-[20px] text-white p-4 rounded">
-                <h3 style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} className=" font-bold text-[24px]">
-                  About Us.
-                </h3>
-                <p className="m-0 font-inter font-normal text-[16px]">
-                  Corporate clients and leisure travelers has been relying on
-                  Groundlink for dependab safe, and professional chauffeured car
-                  service in major cities across World.
+                <h3 className="font-bold text-[20px] lg:text-[24px]">About Us</h3>
+                <p className="font-inter text-[14px] lg:text-[16px]">
+                  Corporate clients and leisure travelers have been relying on Groundlink for safe,
+                  dependable, and professional chauffeured car service in major cities worldwide.
                 </p>
                 <div className="flex items-center gap-[10px]">
                   <div className="bg-[#FF9F0D] px-4 py-3 rounded-[4px]">
-                   <Image src="/images/Clock.png" alt="clock" width={45} height={45}></Image>
+                    <Image src="/images/Clock.png" alt="clock" width={45} height={45} />
                   </div>
-                  <div className="flex flex-col font-inter font-normal">
-                    <h4 className="text-[18px]">Opening Houres</h4>
-                    <p className="m-0 text-[14px]">Mon - Sat(8.00 - 6.00)</p>
-                    <p className="m-0 text-[14px]">Sunday - Closed</p>
+                  <div>
+                    <h4 className="text-[16px] lg:text-[18px]">Opening Hours</h4>
+                    <p className="m-0 text-[12px] lg:text-[14px]">Mon - Sat (8:00 AM - 6:00 PM)</p>
+                    <p className="m-0 text-[12px] lg:text-[14px]">Sunday - Closed</p>
                   </div>
                 </div>
               </div>
+              {/* Useful Links */}
               <div className="flex flex-col gap-[20px] text-white p-4 rounded">
-                <h3 className="font-bold text-[24px]">
-                  Useful Links
-                </h3>
-                <ul className="flex flex-col gap-[20px] font-inter text-[20px] font-normal">
+                <h3 className="font-bold text-[20px] lg:text-[24px]">Useful Links</h3>
+                <ul className="flex flex-col gap-[10px] font-inter text-[16px] lg:text-[20px]">
                   <li>
                     <Link href="/about">About</Link>
                   </li>
@@ -86,14 +86,15 @@ export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
                   </li>
                 </ul>
               </div>
+              {/* Help Section */}
               <div className="flex flex-col gap-[20px] text-white p-4 rounded">
-                <h3 style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} className="font-bold text-[24px]">Help ?</h3>
-                <ul className="flex flex-col gap-[20px] font-inter text-[20px] font-normal">
+                <h3 className="font-bold text-[20px] lg:text-[24px]">Help?</h3>
+                <ul className="flex flex-col gap-[10px] font-inter text-[16px] lg:text-[20px]">
                   <li>
                     <Link href="/faq">FAQ</Link>
                   </li>
                   <li>
-                    <Link href="#">Term & conditions</Link>
+                    <Link href="#">Terms & Conditions</Link>
                   </li>
                   <li>
                     <Link href="#">Reporting</Link>
@@ -109,101 +110,45 @@ export default function Footer({ bgColorFirstDiv = 'black'}: FooterProps) {
                   </li>
                 </ul>
               </div>
+              {/* Recent Posts */}
               <div className="flex flex-col gap-[20px] text-white p-4 rounded">
-                <h3 style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} className="font-bold text-[24px]">
-                  Recent Post
-                </h3>
-  
-                <div className="flex flex-col gap-[20px]">
-                  <Link href="!" className="flex gap-[20px]">
-                    <div className="w-[55px] h-[55px]">
-                      <Image
-                        src="/images/kabab2.png"
-                        className="w-[100%] h-[100%]"
-                        alt="image"
-                        width={60}
-                        height={60}
-                      />
-                    </div>
-                    <div className="font-inter font-normal">
-                      <p className="m-0  text-[16px]">20 Feb 2022</p>
-                      <p className="text-[18px]">Keep Your Business</p>
-                    </div>
-                  </Link>
-                  <Link href="!" className="flex gap-[20px]">
-                    <div className="w-[55px] h-[55px]">
-                      <Image
-                        src="/images/roast.png"
-                        className="w-[100%] h-[100%]"
-                        alt="image"
-                        width={60}
-                        height={60}
-                      />
-                    </div>
-                    <div className="font-inter font-normal">
-                      <p className="m-0  text-[16px]">20 Feb 2022</p>
-                      <p className="text-[18px]">Keep Your Business</p>
-                    </div>
-                  </Link>
-                  <Link href="!" className="flex gap-[20px]">
-                    <div className="w-[55px] h-[55px]">
-                      <Image
-                        src="/images/roll.png"
-                        className="w-[100%] h-[100%]"
-                        alt="image"
-                        width={60}
-                        height={60}
-                      />
-                    </div>
-                    <div className="font-inter font-normal">
-                      <p className="m-0  text-[16px]">20 Feb 2022</p>
-                      <p className="text-[18px]">Keep Your Business</p>
-                    </div>
-                  </Link>
+                <h3 className="font-bold text-[20px] lg:text-[24px]">Recent Posts</h3>
+                <div className="flex flex-col gap-[10px]">
+                  {[
+                    { src: '/images/kabab2.png', date: '20 Feb 2022', text: 'Keep Your Business' },
+                    { src: '/images/roast.png', date: '20 Feb 2022', text: 'Keep Your Business' },
+                    { src: '/images/roll.png', date: '20 Feb 2022', text: 'Keep Your Business' },
+                  ].map(({ src, date, text }, index) => (
+                    <Link key={index} href="!" className="flex gap-[10px]">
+                      <Image src={src} alt={text} width={55} height={55} />
+                      <div className="font-inter text-[14px] lg:text-[16px]">
+                        <p className="m-0">{date}</p>
+                        <p>{text}</p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className={`bg-"#4f4f4f" text-black`}>
-          <div className="max-w-[1320px] h-[100px] mx-auto flex justify-between items-center">
-            <p className="m-0 font-normal text-[16px]">
+        <div className="bg-[#4f4f4f] text-white">
+          <div className="max-w-[1320px] h-[100px] mx-auto flex flex-col sm:flex-row justify-between items-center px-4">
+            <p className="m-0 font-normal text-[14px] lg:text-[16px]">
               Copyright © 2022 by Ayeman. All Rights Reserved.
             </p>
-            <div className="flex gap-[20px]">
-             <div className="bg-white w-[36px] h-[36px] flex justify-center items-center">
-               <Link href="#">
-               <Image src="/images/facebook.png" alt="pinterest" color="white" width={18} height={12}></Image>
-              </Link>
-              </div>
-              
-              <div className="bg-white w-[36px] h-[36px] flex justify-center items-center">
-              <Link href="#">
-              <Image src="/images/twitter.png" alt="pinterest" color="white" width={24} height={16}></Image>
-              </Link>
-              </div>
-
-             <div className="bg-white w-[36px] h-[36px] flex justify-center items-center">
-             <Link href="#">
-             <Image src="/images/insta.png" alt="pinterest" color="white" width={24} height={16}></Image>
-              </Link>
-             </div>
-              <div className="bg-white w-[36px] h-[36px] flex justify-center items-center">
-                <Link href="#">
-                <Image src="/images/youtube.png" alt="pinterest" color="white" width={24} height={16}></Image>
-              </Link>
-              </div>
-             <div className="bg-white w-[36px] h-[36px] flex justify-center items-center">
-             <Link href="#">
-             <Image src="/images/pinterest.png" alt="pinterest" color="white" width={24} height={16}></Image>
-              </Link>
-             </div>
+            <div className="flex gap-[10px]">
+              {['facebook', 'twitter', 'insta', 'youtube', 'pinterest'].map((platform, index) => (
+                <div key={index} className="bg-white w-[36px] h-[36px] flex justify-center items-center">
+                  <Link href="#">
+                    <Image src={`/images/${platform}.png`} alt={platform} width={20} height={20} />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
-          </div>
-       
         </div>
       </div>
-    
-    );
-  }
+    </div>
+  );
+}

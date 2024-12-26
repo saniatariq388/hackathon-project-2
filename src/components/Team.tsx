@@ -26,7 +26,7 @@ export default function TeamMemberSection() {
             <Card key={index} className="bg-white overflow-hidden group"> 
             <div className="relative">
              
-             {/* yaha link ni hora ourChef page */}
+             {/* yaha link ni hora our */}
               <Image
                 src={member.image}
                 alt={member.name}

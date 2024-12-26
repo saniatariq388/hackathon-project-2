@@ -8,8 +8,8 @@ export default function WhyChooseUs() {
         {/* About Us Section */}
                   <div className="flex flex-wrap -mx-4 py-16">
                     <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-                      <div className="grid grid-cols-2 grid-rows-2 gap-4 ml-8">
-                        <div className='row-span-2 w-[350px] h-[550px]'>
+                      <div className=" grid grid-cols-2 grid-rows-2 gap-4 ">
+                        <div className='row-span-2 flex w-[350px] h-[550px]'>
                         <Image src="/images/shawarma.png?height=560&width=350" alt="Tacos" width={360} height={550} className="rounded-lg" />
                         </div>
                         <Image src="/images/kabab2.png?height=271&width=309" alt="Fried food" width={300} height={300} className="rounded-lg" />
