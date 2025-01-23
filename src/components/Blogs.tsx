@@ -1,3 +1,5 @@
+//src\components\Blogs.tsx
+
 import { greatVibesFont } from '@/font'
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"

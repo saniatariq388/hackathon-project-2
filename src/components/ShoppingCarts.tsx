@@ -1,167 +1,230 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { Star, X, Plus, Minus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { Star, X, Plus, Minus, Trash2 } from "lucide-react";
+import Link from "next/link";
 
-interface CartItem {
+interface Product {
   id: number;
   name: string;
+  image: string;
+  description: string;
   price: number;
   rating: number;
-  image: string;
   quantity: number;
 }
 
 export default function ShoppingCart() {
-  const [items, setItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "Burger",
-      price: 35.0,
-      rating: 3,
-      image: "/images/burgercart.png",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Fresh Lime",
-      price: 25.0,
-      rating: 3,
-      image: "/images/drinks.png",
-      quantity: 1,
-    },
-    {
-      id: 3,
-      name: "Pizza",
-      price: 15.0,
-      rating: 3,
-      image: "/images/pizza.png",
-      quantity: 1,
-    },
-    {
-      id: 4,
-      name: "Chocolate Muffin",
-      price: 45.0,
-      rating: 3,
-      image: "/images/cupcakes.png",
-      quantity: 1,
-    },
-    {
-      id: 5,
-      name: "Coffee",
-      price: 15.0,
-      rating: 3,
-      image: "/images/coffee3.png",
-      quantity: 1,
-    },
-  ]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
 
-  const updateQuantity = (id: number, increment: boolean) => {
-    setItems(
-      items.map((item) =>
-        item.id === id
-          ? { ...item, quantity: increment ? item.quantity + 1 : Math.max(1, item.quantity - 1) }
-          : item
-      )
+  const updateQuantity = (id: number, change: number) => {
+    setProducts((prevProducts) => {
+      const updatedProducts = prevProducts.map((product) => {
+        if (product.id === id) {
+          const newQuantity = Math.max(1, product.quantity + change);
+          return { ...product, quantity: newQuantity };
+        }
+        return product;
+      });
+      return updatedProducts;
+    });
+  };
+
+  const removeProduct = (id: number) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
     );
   };
 
-  const removeItem = (id: number) => {
-    setItems(items.filter((item) => item.id !== id));
+  const calculateTotal = (price: number, quantity: number) =>
+    (price * quantity).toFixed(2);
+
+  const handleApplyCoupon = () => {
+    // Apply discount based on coupon logic (Example: 10% discount)
+    if (coupon === "DISCOUNT10") {
+      setDiscount(10);
+    } else {
+      alert("Invalid Coupon Code");
+    }
   };
 
+  const handleProceedToCheckout = () => {
+    // Logic for proceeding to checkout
+    alert("Proceeding to Checkout...");
+  };
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      const parsedCart = JSON.parse(savedCart);
+      if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+        setProducts(parsedCart);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(products));
+  }, [products]);
+
   return (
-    <div className="w-full max-w-6xl text-black mx-auto p-4">
-      {/* Header Row */}
-      <div className="grid grid-cols-12 gap-4 py-4 border-b text-sm font-bold">
-        <div className="col-span-4">Product</div>
-        <div className="col-span-2 text-center">Price</div>
-        <div className="col-span-3 text-center">Quantity</div>
-        <div className="col-span-2 text-center">Total</div>
-        <div className="col-span-1 text-center">Remove</div>
+    <>
+      <div className="w-full max-w-6xl mx-auto p-4 text-black">
+        {products.length === 0 ? (
+          <p className="text-center text-gray-500 my-8">
+            Your shopping cart is empty.
+          </p>
+        ) : (
+          <>
+            <div className="grid grid-cols-12 gap-4 mb-4 text-sm font-bold text-gray-700">
+              <div className="col-span-6 md:col-span-6">Product</div>
+              <div className="col-span-2 text-center hidden md:block">
+                Price
+              </div>
+              <div className="col-span-2 text-center">Quantity</div>
+              <div className="col-span-2 text-center">Total</div>
+            </div>
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="relative grid grid-cols-12 gap-4 items-center p-4 bg-white rounded-lg border border-b border-gray-200"
+              >
+                <div className="col-span-6 md:col-span-6 flex gap-4 items-center">
+                  <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+                    <Image
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      layout="fill"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-lg font-semibold">{product.name}</p>
+                    <p className="text-sm text-gray-500">${product.price}</p>
+                  </div>
+                </div>
+
+                <div className="col-span-2 text-center">${product.price}</div>
+                <div className="col-span-2 text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    <button onClick={() => updateQuantity(product.id, -1)}>
+                      <Minus className="h-5 w-5" />
+                    </button>
+                    <span className="font-bold">{product.quantity}</span>
+                    <button onClick={() => updateQuantity(product.id, 1)}>
+                      <Plus className="h-5 w-5" />
+                    </button>
+                  </div>
+                </div>
+                <div className="col-span-2 text-center">
+                  ${calculateTotal(product.price, product.quantity)}
+                  <button
+                    onClick={() => removeProduct(product.id)}
+                    className="text-red-500 ml-2"
+                  >
+                    <Trash2 className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
-      {/* Items */}
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className="grid grid-cols-12 gap-4 py-6 border-b items-center"
-        >
-          {/* Product Column */}
-          <div className="col-span-4 flex gap-4">
-            <div className="w-24 h-24 relative rounded-lg overflow-hidden">
-              <Image
-                src={item.image}
-                alt={item.name}
-                className="object-cover"
-                width={120}
-                height={120}
-              />
-            </div>
-            <div>
-              <h3 className="font-bold">{item.name}</h3>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className={
-                      i < item.rating
-                        ? "fill-[#FF9F0D] stroke-[#FF9F0D]"
-                        : "fill-gray-200 stroke-gray-200"
-                    }
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Price Column */}
-          <div className="col-span-2 text-center text-black font-helvetica">
-            ${item.price.toFixed(2)}
-          </div>
-
-          {/* Quantity Column */}
-          <div className="col-span-3 flex items-center justify-center gap-2">
-            <Button
-              size="icon"
-              className="h-8 w-8"
-              onClick={() => updateQuantity(item.id, false)}
+      {/* Apply Coupon Section */}
+      <div className="w-full max-w-7xl mx-auto p-4">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold text-gray-800">Coupon Code</h2>
+          <div className="flex space-x-2">
+            <input
+              type="text"
+              placeholder="Enter Coupon Code"
+              className="flex-1 p-3 border border-gray-300 rounded-md"
+              value={coupon}
+              onChange={(e) => setCoupon(e.target.value)}
+            />
+            <button
+              onClick={handleApplyCoupon}
+              className="bg-[#FF9F0D] text-white p-3 rounded-md"
             >
-              <Minus className="h-4 w-4" color="black" size={24} />
-            </Button>
-            <div className="w-12 h-8 flex items-center justify-center text-black">
-              {item.quantity}
+              Apply
+            </button>
+          </div>
+          {discount > 0 && (
+            <div className="text-green-500">
+              Coupon Applied! You get {discount}% off.
             </div>
-            <Button
-              size="icon"
-              className="h-8 w-8 text-black"
-              onClick={() => updateQuantity(item.id, true)}
-            >
-              <Plus className="h-4 w-4" color="black" />
-            </Button>
-          </div>
-
-          {/* Total Column */}
-          <div className="col-span-2 text-center text-black">
-            ${(item.price * item.quantity).toFixed(2)}
-          </div>
-
-          {/* Remove Column */}
-          <div className="col-span-1 text-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-gray-500 hover:text-gray-700"
-              onClick={() => removeItem(item.id)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+          )}
         </div>
-      ))}
-    </div>
+
+        {/* Total Bill Section */}
+        <div className="space-y-4 mt-8">
+          <h2 className="text-3xl font-bold text-gray-800">Total Bill</h2>
+          <div className="p-6 space-y-4 border rounded-md bg-white">
+            <div className="flex justify-between items-center">
+              <span className="text-xl font-bold text-gray-800">Subtotal</span>
+              <span className="text-xl font-bold text-gray-800">
+                $
+                {calculateTotal(
+                  products.reduce(
+                    (sum, product) => sum + product.price * product.quantity,
+                    0
+                  ),
+                  1
+                )}
+              </span>
+            </div>
+            {discount > 0 && (
+              <div className="flex justify-between items-center">
+                <span className="text-lg text-gray-600">Discount</span>
+                <span className="text-lg text-gray-600">
+                  -$
+                  {(
+                    (discount / 100) *
+                    products.reduce(
+                      (sum, product) => sum + product.price * product.quantity,
+                      0
+                    )
+                  ).toFixed(2)}
+                </span>
+              </div>
+            )}
+            <div className="h-px bg-gray-300 my-4" />
+            <div className="flex justify-between items-center">
+              <span className="text-xl font-bold text-gray-800">
+                Total Amount
+              </span>
+              <span className="text-xl font-bold text-gray-800">
+                $
+                {(
+                  products.reduce(
+                    (sum, product) => sum + product.price * product.quantity,
+                    0
+                  ) -
+                  (discount / 100) *
+                    products.reduce(
+                      (sum, product) => sum + product.price * product.quantity,
+                      0
+                    )
+                ).toFixed(2)}
+              </span>
+            </div>
+          </div>
+
+
+          <Link href="/checkoutPage">
+            <button
+              onClick={handleProceedToCheckout}
+              className="w-full py-3 bg-[#FF9F0D] text-white text-lg rounded-md mt-4"
+            >
+              Proceed to Checkout
+            </button>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

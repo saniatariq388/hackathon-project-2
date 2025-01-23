@@ -1,5 +1,5 @@
+//src\app\menu\page.tsx
 
-import FoodCategory from '@/components/FoodCategory'
 import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
 import Partner from '@/components/Partner'
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
    <div className='w-full '>
-   <HeaderMenu />
+   <HeaderMenu heroHeading="MENU" pageName="menu" />
    <StartardMenu/>
    <Partner />
    <Footer bgColorFirstDiv="black" textColor="white"/>

@@ -7,60 +7,74 @@ export default function WhyChooseUs() {
    <>
       <section className="w-full mt-[130px] py-24">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-2">
           {/* Left side - Image Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <div className="col-span-2 transform hover:scale-105">
-              <Image
-                src="/images/shawarma.png"
-                alt="Delicious tacos with vegetables"
-                className="object-cover rounded-lg"
-                width={360}
-                height={350}
-              />
-            </div>
-            <div className="hidden md:block mt-[185px] transform hover:scale-105">
-              <Image
-                src="/images/burger.png"
-                alt="Gourmet burger"
-                className="object-cover rounded-lg"
-                width={265}
-                height={235}
-              />
-            </div>
-            <div className="grid grid-cols-3 gap-4 col-span-2">
-              <Image
-                src="/images/kabab2.png"
-                alt="Fried food with dip"
-                className="object-cover rounded-lg transform hover:scale-105"
-                width={250}
-                height={300}
-              />
-              <Image
-                src="/images/burger4.png"
-                alt="Cheese burger"
-                className="object-cover rounded-lg transform hover:scale-105"
-                width={225}
-                height={230}
-              />
-              <div className="space-y-4">
-                <Image
-                  src="/images/burger3.png"
-                  alt="Plated burger"
-                  className="object-cover rounded-lg transform hover:scale-105"
-                  width={180}
-                  height={170}
-                />
-                <Image
-                  src="/images/salad1.png"
-                  alt="Fresh salad"
-                  className="object-cover rounded-lg transform hover:scale-105"
-                  width={180}
-                  height={170}
-                />
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-7xl mx-auto px-4">
+      <div className="col-span-1 sm:col-span-2 transform transition-transform duration-300 hover:scale-105">
+        <Image
+          src="/images/shawarma.png"
+          alt="Delicious tacos with vegetables"
+          className="object-cover rounded-lg w-full h-auto"
+          width={720}
+          height={700}
+          layout="responsive"
+        />
+      </div>
+      <div className="hidden lg:block mt-[10%] transform transition-transform duration-300 hover:scale-105">
+        <Image
+          src="/images/burger.png"
+          alt="Gourmet burger"
+          className="object-cover rounded-lg w-full h-auto"
+          width={530}
+          height={470}
+          layout="responsive"
+        />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 col-span-1 sm:col-span-2">
+        <div className="col-span-2 sm:col-span-1 transform transition-transform duration-300 hover:scale-105">
+          <Image
+            src="/images/kabab2.png"
+            alt="Fried food with dip"
+            className="object-cover rounded-lg w-full h-auto"
+            width={500}
+            height={600}
+            layout="responsive"
+          />
+        </div>
+        <div className="transform transition-transform duration-300 hover:scale-105">
+          <Image
+            src="/images/burger4.png"
+            alt="Cheese burger"
+            className="object-cover rounded-lg w-full h-auto"
+            width={450}
+            height={460}
+            layout="responsive"
+          />
+        </div>
+        <div className="space-y-4">
+          <div className="transform transition-transform duration-300 hover:scale-105">
+            <Image
+              src="/images/burger3.png"
+              alt="Plated burger"
+              className="object-cover rounded-lg w-full h-auto"
+              width={360}
+              height={340}
+              layout="responsive"
+            />
           </div>
+          <div className="transform transition-transform duration-300 hover:scale-105">
+            <Image
+              src="/images/salad1.png"
+              alt="Fresh salad"
+              className="object-cover rounded-lg w-full h-auto"
+              width={360}
+              height={340}
+              layout="responsive"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
 
           {/* Right side - Content */}
           <div className="space-y-16">

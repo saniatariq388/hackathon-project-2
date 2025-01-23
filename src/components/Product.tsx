@@ -21,7 +21,7 @@ export default function SimilarProducts() {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-8">
+    <div className="w-full lg:max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-gray-800">Similar Products</h2>
         <div className="flex gap-2">

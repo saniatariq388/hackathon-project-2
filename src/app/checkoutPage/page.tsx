@@ -1,17 +1,18 @@
+//src\app\checkoutPage\page.tsx
+
+import CheckoutForm from '@/components/CheckoutForm'
 import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
-import ShippingAddress from '@/components/ShippingAddress'
 import React from 'react'
 
-function page() {
+function CheckoutPage() {
   return (
     <>
     <HeaderMenu/>
-    <ShippingAddress/>
-    
+    <CheckoutForm/>
     <Footer/>
     </>
   )
 }
 
-export default page
+export default CheckoutPage

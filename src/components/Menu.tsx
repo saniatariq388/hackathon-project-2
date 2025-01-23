@@ -1,3 +1,4 @@
+//src\components\Menu.tsx
 import { Star, ShoppingBag, Heart, Eye } from 'lucide-react'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"

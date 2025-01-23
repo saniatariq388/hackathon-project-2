@@ -1,3 +1,4 @@
+  //src\components\Faq.tsx
   'use client'
 
 import {

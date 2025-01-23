@@ -1,12 +1,19 @@
+//src\components\AboutUs.tsx
+
 import { greatVibesFont } from '@/font'
 import { Check } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { client } from '@/sanity/lib/client'
 
 
-function AboutUs() {
+ async function AboutUs() {
+
+  const  res = await client.fetch("*[_type == 'landingPage']{'aboutusImageOne':sections[1].aboutusImageOne.asset->url,'aboutusImageTwo':sections[1].aboutusImageTwo.asset->url,'aboutusImageThree':sections[1].aboutusImageThree.asset->url,'mainHeading': sections[1].mainHeading,'description': sections[1].description,'aboutusButtonText':sections[1].aboutusButtonText}")
+
+  const { aboutusImageOne, aboutusImageTwo, aboutusImageThree, mainHeading, description, aboutusButtonText} = res[0]
   return (
     <>
       <div className="w-full flex items-center justify-center bg-black">
@@ -19,14 +26,10 @@ function AboutUs() {
               <span className="text-6xl">a</span>bout us
             </h1>
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-              <span className="text-orange-500">We</span> Create the best foody product
+              <span className="text-orange-500">We</span> {mainHeading}
             </h1>
             <p className="text-[16px] leading-[24px] text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              diam pellentesque bibendum non dui volutpat fringilla bibendum.
-              Urna, elit augue urna, vitae feugiat pretium donec id elementum.
-              Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit
-              eu velit in consequat.
+              {description}
             </p>
             <div className="flex gap-2 items-center">
               <Check color="white" />
@@ -48,7 +51,7 @@ function AboutUs() {
             </div>
             <Link href="/about">
               <Button className="bg-[#FF9F0D] w-[190px] h-[60px] text-white rounded-full px-8 py-4 hover:bg-[#FF9F0D]/90">
-                Read More
+                {aboutusButtonText}
               </Button>
             </Link>
           </div>
@@ -57,7 +60,7 @@ function AboutUs() {
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="w-full h-auto col-span-2">
               <Image
-                src="/images/eggs.png"
+                src={aboutusImageOne}
                 alt="eggs image"
                 width={660}
                 height={330}
@@ -66,7 +69,7 @@ function AboutUs() {
             </div>
             <div className="w-full h-auto">
               <Image
-                src="/images/food1.png"
+                src={aboutusImageTwo}
                 alt="kabab"
                 width={322}
                 height={194}
@@ -75,7 +78,7 @@ function AboutUs() {
             </div>
             <div className="w-full h-auto">
               <Image
-                src="/images/burger2.png"
+                src={aboutusImageThree}
                 alt="burger"
                 width={322}
                 height={194}

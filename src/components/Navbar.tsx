@@ -8,7 +8,7 @@ import { Link } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isLoggedIn = true; 
+  const isLoggedIn = true;
 
   return (
     <nav className="bg-black text-white p-4 w-full overflow-hidden">
@@ -23,7 +23,11 @@ export default function Navbar() {
           className="text-orange-500 md:hidden cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <HiX className="w-6 h-6" /> : <HiMenuAlt3 className="w-6 h-6" />}
+          {menuOpen ? (
+            <HiX className="w-6 h-6" />
+          ) : (
+            <HiMenuAlt3 className="w-6 h-6" />
+          )}
         </div>
 
         {/* Links */}
@@ -32,21 +36,27 @@ export default function Navbar() {
             menuOpen ? "block" : "hidden"
           }`}
         >
-          {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map((item) => (
-            <li
-              key={item}
-              className="hover:text-orange-500 cursor-pointer px-4 md:px-0"
-              onClick={() => setMenuOpen(false)} // Close the menu on click
-            >
-              {item}
+          {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map(
+            (item) => (
+              <li
+                key={item}
+                className="hover:text-orange-500 cursor-pointer px-4 md:px-0"
+                onClick={() => setMenuOpen(false)} // Close the menu on click
+              >
+                {item}
+              </li>
+            )
+          )}
+          {/* Conditionally render the Home link based on `isLoggedIn` */}
+          {isLoggedIn ? (
+            <li>
+              <Link href="/home">Home</Link>
             </li>
-          ))}
-           {/* Conditionally render the Home link based on `isLoggedIn` */}
-        {isLoggedIn ? (
-          <li><Link href="/home">Home</Link></li>
-        ) : (
-          <li><Link href="/login">Login</Link></li>
-        )}
+          ) : (
+            <li>
+              <Link href="/login">Login</Link>
+            </li>
+          )}
         </ul>
 
         {/* Search Box and Cart Icon */}

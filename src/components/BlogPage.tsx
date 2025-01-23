@@ -1,3 +1,5 @@
+//src\components\BlogPage.tsx
+
 import React from 'react'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Calendar1, Facebook, Instagram, Search, Star, Twitter, Youtube } from 'lucide-react';
@@ -14,9 +16,9 @@ function BlogPage() {
   return (
     <>
     <div className='w-full flex justify-center items-center mb-[200px]'>
-       <div className='w-[1320px] flex flex-row gap-6  mt-[120px] justify-between '>
+       <div className='w-full max-w-[1320px] flex flex-col lg:flex-row gap-6  mt-[120px] justify-between '>
          {/* blog list */}
-        <div className='w-[872px] flex flex-col gap-[56px]'>
+        <div className='w-full p-2 lg:w-[872px] flex flex-col gap-[56px]'>
             <div className='w-full flex flex-col justify-start items-left text-left'>
                 <div className='w-full mb-4'>
                     <Image src="/images/shawarma.png" alt="food details" width={880} height={840} ></Image>

@@ -1,3 +1,5 @@
+//src\components\BlogDetails.tsx
+
 import Image from 'next/image'
 import { Calendar, MessageCircle, UserCircle, ArrowLeft, Facebook, Twitter, Linkedin, Instagram, Youtube, Star, Search } from 'lucide-react'
 import RecentPost from './RecentPost'
@@ -8,12 +10,12 @@ import { Input } from './ui/input'
 export default function BlogDetails() {
   return (
    <>
-    <div className='w-full flex justify-center items-center'>
-    <div className='w-[1320px] flex flex-row gap-6 mt-[120px] '>
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className='w-full max-w-[1320px] flex flex-col p-4 justify-center items-center'>
+    <div className=' flex flex-col lg:flex-row gap-6 mt-[80px] '>
+    <div className="w-full  lg:max-w-4xl mx-auto px-16 lg:px-10 py-8">
       {/* Main content */}
       <div className="mb-8">
-        <Image src="/images/kabab2.png?height=520&width=872" alt="Blog post image" width={872} height={520} className="w-full h-auto mb-6" />
+        <Image src="/images/kabab2.png?height=520&width=872" alt="Blog post image" width={872} height={520} className="w-3/4 lg:w-full h-auto mb-6" />
         <div className="flex items-center text-gray-600 mb-4">
           <Calendar className="w-5 h-5 mr-2" />
           <span className="mr-4">Feb 14, 2022</span>
@@ -22,7 +24,7 @@ export default function BlogDetails() {
           <UserCircle className="w-5 h-5 mr-2" />
           <span>Admin</span>
         </div>
-        <h1 className="text-3xl font-bold mb-4">10 Reasons To Do A Digital Detox Challenge</h1>
+        <h1 className="text-sm lg:text-base  font-bold mb-4">10 Reasons To Do A Digital Detox Challenge</h1>
         <p className="text-gray-700 mb-4">
           Netus pretium tellus nulla commodo massa adipiscing in elementum magna congue condimentum placerat habitasse potenti ac orci a quisque tristique elementum et viverra at condimentum scelerisque eu mi. Elit praesent cras vehicula a ullamcorper nulla scelerisque aliquet tempus faucibus quam ac aliquet nibh a condimentum suspendisse hac integer leo erat aliquam ut himenaeos.
         </p>
@@ -80,7 +82,7 @@ export default function BlogDetails() {
       </div>
 
       {/* Comments */}
-      <div className="mb-8">
+      <div className="mb-8 grid sm:grid-cols-2 lg:grid-cols-1">
         <h2 className="text-2xl font-bold mb-4">Comments - 03</h2>
         {[1, 2, 3].map((comment) => (
           <div key={comment} className="flex mb-6">

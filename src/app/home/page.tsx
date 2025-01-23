@@ -1,3 +1,5 @@
+//src\app\home\page.tsx
+
 import Blog from '@/components/Blog'
 import FoodItem from '@/components/FoodItem'
 import Footer1 from '@/components/Footer1'
@@ -13,7 +15,7 @@ function HomePage() {
   return (
     <div>
         <div className='w-full bg-white'>
-            <HeroHeader/>
+            <HeroHeader />
             <FoodItem/>
             <WhyChoose/>
             <MenuItem/>

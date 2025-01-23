@@ -1,152 +1,360 @@
-'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { Heart, Minus, Plus, Share2, ArrowLeft, ArrowRight, ShoppingBag, Star } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import ProductDiscription from './ProductDiscription'
-import Product from './Product'
-import Link from 'next/link'
 
-export default function ShopDetails() {
-  const [quantity, setQuantity] = useState(1)
+"use client"
+
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { useSearchParams } from "next/navigation"
+import { Heart, Minus, Plus, Share2, Star, ShoppingBag, ArrowLeft, ArrowRight, Facebook, Twitter, Youtube, Instagram, ShoppingCart } from "lucide-react"
+import { Badge } from '@/components/ui/badge'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import ProductDiscription from "./ProductDiscription"
+import Product from "./Product"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import React from "react"
+import { Label } from "./ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+
+interface ProductDetails {
+  _id: string
+  name: string
+  price: number
+  image: string
+  category: string
+  description?: string
+  reviews: Array<{ rating: number; comment: string }>
+}
+interface ProductItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  quantity?: number; // Optional for wishlist and compare
+}
+
+
+export default function ProductDetail() {
+  const { id } = useParams<{ id: string }>()
   const [selectedImage, setSelectedImage] = useState(0)
+  const [product, setProduct] = useState<ProductDetails | null>(null)
+  const [quantity, setQuantity] = useState(1)
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [newReview, setNewReview] = useState({ rating: 5, comment: "" })
 
-  const images = [
-    '/images/chicken1.png?height=600&width=600',
-    '/images/chicken2.png?height=600&width=600',
-    '/images/chicken3.png?height=600&width=600',
-    '/images/chicken4.png?height=600&width=600'
-  ]
+  
+
+  const productDetails: ProductDetails = {
+    name: searchParams.get("name") || "Product Name",
+    price: parseFloat(searchParams.get("price") || "0.00"),
+    image: searchParams.get("image") || "/placeholder.svg",
+    description: searchParams.get("description") || "No description available",
+    category: searchParams.get("category") || "Uncategorized",
+    _id: "",
+    reviews: []
+  }
+
+  const images = [productDetails.image, productDetails.image, productDetails.image, productDetails.image]
+
+  const handleAddToCart = () => {
+    if (!productDetails) return
+    const cartItem = {
+      id: productDetails._id,
+      name: productDetails.name,
+      price: productDetails.price,
+      image: productDetails.image,
+      quantity: quantity,
+    }
+
+    const existingCart = JSON.parse(localStorage.getItem("cart") || "[]")
+    const existingItemIndex = existingCart.findIndex((item: ProductDetails) => item._id === cartItem.id)
+
+    if (existingItemIndex > -1) {
+      existingCart[existingItemIndex].quantity += quantity
+    } else {
+      existingCart.push(cartItem)
+    }
+
+    localStorage.setItem("cart", JSON.stringify(existingCart))
+    alert("Product added to cart!")
+    router.push("/shoppingCart")
+  }
+
+  const handleAddToWishlist = () => {
+    if (!productDetails) return
+    const wishlistItem = {
+      id: productDetails._id,
+      name: productDetails.name,
+      price: productDetails.price,
+      image: productDetails.image,
+    }
+
+    const existingWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
+    if (!existingWishlist.some((item: ProductItem) => item.id === wishlistItem.id)) {
+      existingWishlist.push(wishlistItem)
+      localStorage.setItem("wishlist", JSON.stringify(existingWishlist))
+      alert("Product added to wishlist!")
+    } else {
+      alert("Product is already in the wishlist!")
+    }
+  }
+
+  const handleCompare = () => {
+    if (!productDetails) return
+    const compareItem = {
+      id: productDetails._id,
+      name: productDetails.name,
+      price: productDetails.price,
+      image: productDetails.image,
+    }
+
+    const existingCompare = JSON.parse(localStorage.getItem("compare") || "[]")
+    if (!existingCompare.some((item: ProductItem) => item.id === compareItem.id)) {
+      existingCompare.push(compareItem)
+      localStorage.setItem("compare", JSON.stringify(existingCompare))
+      alert("Product added to compare list!")
+    } else {
+      alert("Product is already in the compare list!")
+    }
+  }
+
+  const handleAddReview = () => {
+    if (!productDetails) return
+    const updatedProduct = {
+      ...productDetails,
+      reviews: [...(productDetails.reviews || []), newReview],
+    }
+    setProduct(updatedProduct)
+    setNewReview({ rating: 5, comment: "" })
+    // In a real application, you would send this to your backend
+    alert("Review added successfully!")
+  }
+
+
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
-      <div className="grid gap-8 lg:grid-cols-2">
+    <div className="container mx-auto px-4 py-8">
+      
+   
+      <div className="grid gap-2 lg:grid-cols-1 space-y-4">
         {/* Image Gallery */}
-        <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden rounded-lg border">
-            <Image
-              src={images[selectedImage]}
-              alt="Product image"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="flex gap-4 overflow-auto pb-2">
+        <div className="flex gap-2 ml-14">
+          <div className="flex flex-col gap-4 pl-10">
             {images.map((image, index) => (
-              <button
+              <div
                 key={index}
-                onClick={() => setSelectedImage(index)}
-                className={`relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg border-2 ${
-                  selectedImage === index ? 'border-orange-500' : 'border-gray-200'
+                className={`w-full h-[150px] border-2 rounded flex-1 cursor-pointer lg:w-1/2 ${
+                  selectedImage === index ? "border-[#FF9F0D]" : "border-gray-200"
                 }`}
+                onClick={() => setSelectedImage(index)}
               >
-                <Image src={image} alt={`Product thumbnail ${index + 1}`} fill className="object-cover" />
-              </button>
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={`${productDetails.name} thumbnail ${index + 1}`}
+                  width={196}
+                  height={196}
+                  className="object-cover w-full h-full"
+                />
+              </div>
             ))}
           </div>
-        </div>
 
-        {/* Product Info */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center rounded-md bg-orange-500 px-3 py-1 text-sm text-white">
+          <div className="w-[660px] h-auto lg:w-1/2">
+            <div className="flex gap-4">
+              <div className="flex-1">
+              <Image
+              src={images[selectedImage] || "/placeholder.svg"}
+              alt={productDetails.name}
+              width={800}
+              height={800}
+              className="w-full rounded-lg object-cover"
+            />
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+
+        {/* Product Details */}
+        <div className="space-y-8 ml-[85px]">
+          <div className="flex w-2/3 justify-between items-start">
+            <Badge variant="secondary" className="bg-[#FF9F0D] text-white">
               In stock
-            </span>
+            </Badge>
             <div className="flex items-center gap-4 text-gray-600">
               <button className="flex items-center gap-2">
-                <ArrowLeft className="h-5 w-5" /> Prev
+                 <ArrowLeft className="h-5 w-5" /> Prev
               </button>
+              <Link href={"/shoppingCarts"}>
+              {" "}
               <button className="flex items-center gap-2">
-                Next <ArrowRight className="h-5 w-5" />
-              </button>
-            </div>
+                 Next <ArrowRight className="h-5 w-5" />
+               </button>
+              </Link>
+             </div>
           </div>
 
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">Yummy Chicken Chup</h1>
-            <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat
-              fringilla bibendum.
-            </p>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">{productDetails.name}</h1>
+            <p className="text-gray-600">{productDetails.description}</p>
           </div>
 
-          <div className="border-t border-b py-4">
-            <div className="text-3xl font-bold text-gray-900">$54.00</div>
-            <div className="mt-4 flex items-center gap-4">
+          <Separator />
+
+          <div className="space-y-2">
+            <div className="text-3xl font-bold text-black">${productDetails.price}</div>
+
+            <div className="flex items-center gap-4">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-orange-500 text-orange-500" />
+                  <Star key={i} className="w-5 h-5 fill-[#FF9F0D] text-[#FF9F0D]" />
                 ))}
               </div>
-              <div className="text-sm text-gray-600">
-                <span>5.0 Rating</span>
-                <span className="mx-2">|</span>
-                <span>22 Review</span>
-              </div>
+              <Separator orientation="vertical" className="h-6" />
+              <span className="text-gray-500">5.0 Rating</span>
+              <Separator orientation="vertical" className="h-6" />
+              <span className="text-gray-500">22 Review</span>
             </div>
-          </div>
-
-          <div>
-            <p className="text-gray-900">Dictum/cursus/Risus</p>
+            <p className="text-[18px] text-black mt-4">Dictum/cursus/Risus</p>
           </div>
 
           <div className="flex gap-4">
-            <Card className="flex h-[50px] items-center divide-x border">
-              <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="flex h-full w-[50px] items-center justify-center"
-              >
-                <Minus className="h-5 w-5 text-gray-600" />
-              </button>
-              <div className="flex h-full w-[80px] items-center justify-center text-black font-semibold">
-                {quantity}
-              </div>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="flex h-full w-[50px] items-center justify-center text-black"
-              >
-                <Plus className="h-5 w-5" />
-              </button>
+            <Card className="w-[180px]">
+              <CardContent className="flex items-center justify-between p-4">
+                <Button variant="ghost" size="icon" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+                  <Minus className="h-4 w-4"color='black' />
+                </Button>
+                <span className="font-bold text-black">{quantity}</span>
+                <Button variant="ghost" size="icon" onClick={() => setQuantity(quantity + 1)}>
+                  <Plus className="h-4 w-4 " color='black' />
+                </Button>
+              </CardContent>
             </Card>
-           <Link href={"/shoppingCart"}>
-           <Button className="h-[50px] w-[191px] flex-1 gap-2 bg-orange-500 hover:bg-orange-600">
-              <ShoppingBag className="h-5 w-5" />
-              Add to cart
-            </Button>
-           </Link>
+            <Button
+                onClick={handleAddToCart}
+                className=" bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300 ease-in-out mt-4"
+              >
+                Add to Cart
+              </Button>
+
+
           </div>
 
-          <div className="flex gap-6 text-gray-600">
-            <button className="flex items-center gap-2">
-              <Heart className="h-5 w-5" />
+          <div className="flex gap-6 text-black">
+            <button 
+             onClick={handleAddToWishlist}
+            className="flex items-center gap-2 text-black hover:text-gray-900">
+              <Heart className="h-5 w-5" color="black"/>
               Add to Wishlist
             </button>
-            <button className="flex items-center gap-2">
+            <button
+            onClick={handleCompare}
+            className="flex items-center gap-2 text-black hover:text-gray-900">
               <Share2 className="h-5 w-5" />
               Compare
             </button>
           </div>
 
-          <div className="space-y-2 border-t text-black pt-4 mb-[20px]">
+          <Separator />
+
+          <div className="space-y-2">
             <div className="flex gap-2">
-              <span className="font-semibold">Category:</span>
-              <span className="text-gray-600">Pizza</span>
+              <span className="text-gray-700">Category:</span>
+              <span className="text-gray-500">{productDetails.category}</span>
             </div>
             <div className="flex gap-2">
-              <span className="font-semibold">Tag:</span>
-              <span className="text-gray-600">Our Shop</span>
+              <span className="text-gray-700">Tag:</span>
+              <span className="text-gray-500">Our Shop</span>
             </div>
           </div>
+
+          <Separator />
+
+          <div className="space-y-2">
+            <span className="text-gray-700">Share:</span>
+            <div className="flex gap-4">
+                <Link href={"#!"} className="w-6 h-6 hover:text-gray-900">
+                  <Twitter className="w-full h-full text-black"/>
+                  </Link>
+                  <Link href={"#!"}><Facebook className="w-full h-full text-black"/></Link>
+                  <Link href={"#!"}><Youtube className="w-full h-full text-black"/></Link>
+                  <Link href={"#!"}><Instagram className="w-full h-full text-black"/></Link>
+                 <Link href={"#!"}> <Share2 className="w-full h-full text-black" /></Link>
+               
+             
+            </div>
+          </div>
+          
+          <div className="mt-8 text-black">
+              <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+              {product && product.reviews && product.reviews.length > 0 ? (
+                product.reviews.map((review, index) => (
+                  <div key={index} className="mb-4 p-4 bg-gray-100 rounded-lg">
+                    <div className="flex items-center mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-5 h-5 ${i < review.rating ? "fill-[#FF9F0D] text-[#FF9F0D]" : "fill-gray-300 text-gray-300"}`}
+                        />
+                      ))}
+                    </div>
+                    <p>{review.comment}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No reviews yet.</p>
+              )}
+              <div className="mt-6">
+                <h3 className="text-xl font-bold mb-2">Add a Review</h3>
+                <div className="mb-4 w-[250px]">
+                  <Label htmlFor="rating">Rating</Label>
+                  <Select
+                    
+                    value={newReview.rating.toString()}
+                    onValueChange={(value) => setNewReview({ ...newReview, rating: Number.parseInt(value) })}
+                  >
+                    <SelectTrigger id="rating">
+                      <SelectValue placeholder="Select a rating" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 4, 5].map((rating) => (
+                        <SelectItem key={rating} value={rating.toString()}>
+                          {rating} Star{rating !== 1 ? "s" : ""}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className=" mb-4 w-1/2">
+                  <Label htmlFor="comment">Comment</Label>
+                  <Textarea
+                    id="comment"
+                    value={newReview.comment}
+                    onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
+                    placeholder="Write your review here..."
+                  />
+                </div>
+                <Button 
+  onClick={handleAddReview} 
+  className="bg-orange-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-300"
+>
+  Submit Review
+</Button>
+
         </div>
       </div>
-       </div>
-       <ProductDiscription/>
-       <Product/>
-   </>
+    </div>
+    <ProductDiscription/>
+      <Product/>
+    </div>
+    </div>
+    </>
   )
 }
-

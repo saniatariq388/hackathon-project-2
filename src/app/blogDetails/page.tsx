@@ -1,3 +1,5 @@
+//src\app\blogDetails\page.tsx
+
 import BlogDetails from '@/components/BlogDetails'
 import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
@@ -7,7 +9,7 @@ function page() {
   return (
     
     <>
-    <HeaderMenu/>
+    <HeaderMenu pageName='blog post' heroHeading='BLOG POST'/>
     <BlogDetails/>
     <Footer/>
     </>

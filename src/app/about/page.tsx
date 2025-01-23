@@ -1,3 +1,5 @@
+// src\app\about\page.tsx
+
 import About from '@/components/About'
 import Footer from '@/components/Footer'
 import HeaderMenu from '@/components/HeaderMenu'
@@ -10,7 +12,7 @@ function page() {
   return (
     
     <>
-    <HeaderMenu/>
+    <HeaderMenu pageName='about' heroHeading='ABOUT'/>
     <About/>
     <Team/>
     <Testimonials/>

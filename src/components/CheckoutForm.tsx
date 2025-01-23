@@ -1,27 +1,59 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import Image from 'next/image'
+import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import Image from "next/image";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export default function CheckoutPage() {
-  const [sameAsShipping, setSameAsShipping] = useState(false)
 
+
+interface Product {
+  id: number
+  name: string
+  price: number
+  quantity: number
+  image: string
+}
+
+export default function CheckoutForm() {
+  const [sameAsShipping, setSameAsShipping] = useState(false);
+  const [products, setProducts] = useState<Product[]>([])
+  const router = useRouter()
+   
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart")
+    if (savedCart) {
+      setProducts(JSON.parse(savedCart))
+    }
+  }, [])
+
+  const calculateSubtotal = () => {
+    return products.reduce((total, product) => total + product.price * product.quantity, 0)
+  }
+
+  const handlePlaceOrder = () => {
+    // Here you would typically send the order to your backend
+    // For this example, we'll just clear the cart and show a success message
+    localStorage.removeItem("cart")
+    router.push('/order-success')
+  }
+  
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 text-black">
       <div className="grid lg:grid-cols-[1fr_400px] gap-8">
         {/* Left Column - Forms */}
         <div className="space-y-8">
@@ -38,7 +70,11 @@ export default function CheckoutPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email address</Label>
-                <Input id="email" type="email" placeholder="Enter email address" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter email address"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone number</Label>
@@ -84,7 +120,10 @@ export default function CheckoutPage() {
               </div>
               <div className="space-y-2 md:col-span-2">
                 <Label htmlFor="address2">Address 2</Label>
-                <Input id="address2" placeholder="Enter apartment, suite, etc." />
+                <Input
+                  id="address2"
+                  placeholder="Enter apartment, suite, etc."
+                />
               </div>
             </div>
           </div>
@@ -95,7 +134,9 @@ export default function CheckoutPage() {
               <Checkbox
                 id="sameAddress"
                 checked={sameAsShipping}
-                onCheckedChange={(checked) => setSameAsShipping(checked as boolean)}
+                onCheckedChange={(checked) =>
+                  setSameAsShipping(checked as boolean)
+                }
               />
               <label
                 htmlFor="sameAddress"
@@ -106,46 +147,51 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          <div className="flex justify-between pt-6">
-            <Button variant="outline">
-              <ChevronLeft className="w-4 h-4 mr-2" />
-              Back to cart
-            </Button>
-            <Button className="bg-[#FF9F0D] hover:bg-[#FF9F0D]/90">
-              Proceed to shipping
-              <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
+         
+          <div className="mt-8 grid grid-cols-2 gap-4">
+              <Link href={'/shoppingCart'} >
+                <Button variant="outline" className="flex items-center gap-2">
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to cart
+                </Button>
+              </Link>
+              <Button onClick={handlePlaceOrder} className="bg-[#FF9F0D] hover:bg-[#FF9F0D]/90 flex items-center gap-2">
+                Place Order
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+           </div>
+          
+
         </div>
 
-        {/* Right Column - Order Summary */}
-        <Card className="p-6">
-          <h2 className="text-xl font-bold mb-6">Order Summary</h2>
-          <div className="space-y-4">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="flex gap-4">
-                <div className="w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
-                  <Image
-                    src="/placeholder.svg?height=80&width=80"
-                    alt="Chicken Tikka Kabab"
-                    className="w-full h-full object-cover"
+        {/* Order Summary */}
+        <Card className="h-fit">
+            <CardHeader>
+              <CardTitle>Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Order Items */}
+              {products.map((product) => (
+                <div key={product.id} className="flex gap-4">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    className="h-20 w-20 object-cover rounded-md"
                   />
+                  <div>
+                    <h3 className="font-bold text-gray-900">{product.name}</h3>
+                    <p className="text-sm text-gray-500">Quantity: {product.quantity}</p>
+                    <p className="text-sm text-gray-500">${product.price.toFixed(2)}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold">Chicken Tikka Kabab</h3>
-                  <p className="text-sm text-gray-600">150 gm net</p>
-                  <p className="text-sm text-gray-600">50$</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
 
           <Separator className="my-6" />
 
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="text-gray-600">Sub-total</span>
-              <span>130$</span>
+              <span>${calculateSubtotal().toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Shipping</span>
@@ -157,22 +203,23 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Tax</span>
-              <span>54.76$</span>
+              <span>${(calculateSubtotal() * 0.1).toFixed(2)}</span>
             </div>
             <Separator />
             <div className="flex justify-between font-bold text-lg">
               <span>Total</span>
-              <span>432.65$</span>
+              <span>${(calculateSubtotal() * 1.1).toFixed(2)}</span>
             </div>
           </div>
-
-          <Button className="w-full mt-6 bg-[#FF9F0D] hover:bg-[#FF9F0D]/90">
+          </CardContent>
+          <CardFooter>
+          <Button onClick={handlePlaceOrder} className="w-full mt-6 bg-[#FF9F0D] hover:bg-[#FF9F0D]/90">
             Place an order
             <ChevronRight className="w-4 h-4 ml-2" />
           </Button>
+          </CardFooter>
         </Card>
       </div>
     </div>
-  )
+  );
 }
-
